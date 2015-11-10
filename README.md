@@ -1,1 +1,3 @@
-# TimeCardNow
+# WorkTimeLogger
+
+Email, UnixTime, Attendance
