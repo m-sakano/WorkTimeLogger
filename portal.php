@@ -111,7 +111,7 @@
 
       <footer class="footer">
       <div align="center">
-        <p>WorkTimeLogger for BFT, by m-sakano.</p>
+        <p><a href="https://github.com/m-sakano/WorkTimeLogger">WorkTimeLogger by m-sakano</a></p>
       </div>
       </footer>
 

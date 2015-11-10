@@ -1,3 +1,1 @@
 # WorkTimeLogger
-
-Email, UnixTime, Attendance

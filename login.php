@@ -58,7 +58,7 @@
 
           <div class="mastfoot">
             <div class="inner">
-              <p>WorkTimeLogger for BFT.</p>
+              <p><a href="https://github.com/m-sakano/WorkTimeLogger">WorkTimeLogger by m-sakano</a></p>
             </div>
           </div>
 
