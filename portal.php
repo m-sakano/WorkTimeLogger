@@ -58,54 +58,57 @@
         <nav>
           <ul class="nav nav-pills pull-right">
           	<li class="dropdown">
-          		<a href="logout.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="<?php echo $_SESSION['picture'];?>" height="32px" width="32px" class="img-circle"> ログアウト <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></a>
+          		<a href="logout.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="<?php echo $_SESSION['picture'];?>" height="32px" width="32px" class="img-circle"> ログアウト</a>
             </li>
           </ul>
         </nav>
-        <h3 class="text-muted"><?php echo BRAND;?> <span class="glyphicon glyphicon-time" aria-hidden="true"></span></h3>
+        <h4 class="text-muted"><?php echo BRAND;?> <span class="glyphicon glyphicon-time" aria-hidden="true"></span></h4>
       </div>
 
       <div class="jumbotron">
-        <h1><?php echo date('Y/m/d D');?><br><?php echo date('H:i');?></h1>
-        <?php
-        	if (count($attendanceOn) > 0) {
-        		echo '<p><a class="btn btn-lg btn-primary" disabled="disabled" href="attendanceOn.php" role="button">出勤</a></p>', "\n";
-        	} else {
-        		echo '<p><a class="btn btn-lg btn-primary" href="attendanceOn.php" role="button">出勤</a></p>', "\n";
-        	}
-        	if (count($attendanceOff) > 0) {
-        		echo '<p><a class="btn btn-lg btn-default" disabled="disabled" href="attendanceOff.php" role="button">退勤</a></p>', "\n";
-        	} else {
-        		echo '<p><a class="btn btn-lg btn-default" href="attendanceOff.php" role="button">退勤</a></p>', "\n";
-        	}
-        ?>
+        <h3><?php echo date('Y/m/d D');?><br><?php echo date('H:i');?></h3>
       </div>
 
       <div class="row marketing">
         <div class="col-lg-6">
-          <h2>本日の出勤時刻</h2>
+          <h4>本日の出勤時刻&nbsp;
           <?php
           	if (count($attendanceOn) > 0) {
           		foreach ($attendanceOn as $item) {
-          			echo '<h3>', date('H:i',$item), '</h3>';
+          			echo date('H:i',$item);
           		}
           	} else {
-          		echo '<h3>まだ登録されていません。</h3>';
+          		echo '--:--';
           	}
           ?>
-        </div>
-
+          </h4>
+        <?php
+        	if (count($attendanceOn) > 0) {
+        		echo '<p class="text-center"><a class="btn btn-lg btn-primary" disabled="disabled" href="attendanceOn.php" role="button">出勤</a></p>', "\n";
+        	} else {
+        		echo '<p class="text-center"><a class="btn btn-lg btn-primary" href="attendanceOn.php" role="button">出勤</a></p>', "\n";
+        	}
+    	?>
+		</div>
         <div class="col-lg-6">
-          <h2>本日の退勤時刻</h2>
+          <h4>本日の退勤時刻&nbsp;
           <?php
           	if (count($attendanceOff) > 0) {
           		foreach ($attendanceOff as $item) {
-          			echo '<h3>', date('H:i',$item), '</h3>';
+          			echo date('H:i',$item);
           		}
           	} else {
-          		echo '<h3>まだ登録されていません。</h3>';
+          		echo '--:--';
           	}
           ?>
+          </h4>
+        <?php
+        	if (count($attendanceOff) > 0) {
+        		echo '<p class="text-center"><a class="btn btn-lg btn-default" disabled="disabled" href="attendanceOff.php" role="button">退勤</a></p>', "\n";
+        	} else {
+        		echo '<p class="text-center"><a class="btn btn-lg btn-default" href="attendanceOff.php" role="button">退勤</a></p>', "\n";
+        	}
+    	?>
         </div>
       </div>
 
