@@ -10,6 +10,6 @@ if (is_null($_SESSION['me'])) {
 }
 
 $client = createDynamoDBClient();
-$result = addDynamoDBItem($client, $_SESSION['email'], time(), '自社退社');
+$result = addDynamoDBItem($client, $_SESSION['email'], time(), '案件先退社');
 
 header('Location: '.SITE_URL);

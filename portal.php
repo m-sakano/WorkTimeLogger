@@ -10,11 +10,17 @@
 	if (iterator_count($result) > 0) {
 		foreach ($result as $item) {
 			switch ($item['Attendance']['S']) {
-				case '出勤':
+				case '自社出社':
 					$attendanceOn[] = $item['UnixTime']['N'];
 					break;
-				case '退勤':
+				case '自社退社':
 					$attendanceOff[] = $item['UnixTime']['N'];
+					break;
+				case '案件先出社':
+					$attendanceCustomerOn[] = $item['UnixTime']['N'];
+					break;
+				case '案件先退社':
+					$attendanceCustomerOff[] = $item['UnixTime']['N'];
 					break;
 			}
 		}
@@ -41,7 +47,7 @@
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="bootstrap/assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="bootstrap/docs/assets/js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -71,11 +77,54 @@
 
       <div class="row marketing">
         <div class="col-lg-6">
-          <h4>本日の出勤時刻&nbsp;
+          <h4>案件先業務の開始時刻&nbsp;
+          <?php
+          	if (count($attendanceCustomerOn) > 0) {
+          		foreach ($attendanceCustomerOn as $item) {
+          			echo date('H:i',$item), '&nbsp;';
+          		}
+          	} else {
+          		echo '--:--';
+          	}
+          ?>
+          </h4>
+        <?php
+        	if (count($attendanceCustomerOn) > 0) {
+        		echo '<p class="text-center"><a class="btn btn-lg btn-primary" disabled="disabled" href="attendanceCustomerOn.php" role="button">案件先業務開始</a></p>', "\n";
+        	} else {
+        		echo '<p class="text-center"><a class="btn btn-lg btn-primary" href="attendanceCustomerOn.php" role="button">案件先業務開始</a></p>', "\n";
+        	}
+    	?>
+		</div>
+        <div class="col-lg-6">
+          <h4>案件先業務の終了時刻&nbsp;
+          <?php
+          	if (count($attendanceCustomerOff) > 0) {
+          		foreach ($attendanceCustomerOff as $item) {
+          			echo date('H:i',$item), '&nbsp;';
+          		}
+          	} else {
+          		echo '--:--';
+          	}
+          ?>
+          </h4>
+        <?php
+        	if (count($attendanceCustomerOff) > 0) {
+        		echo '<p class="text-center"><a class="btn btn-lg btn-default" disabled="disabled" href="attendanceCustomerOff.php" role="button">案件先業務終了</a></p>', "\n";
+        	} else {
+        		echo '<p class="text-center"><a class="btn btn-lg btn-default" href="attendanceCustomerOff.php" role="button">案件先業務終了</a></p>', "\n";
+        	}
+    	?>
+        </div>
+      </div>
+
+      <div class="row marketing">
+        <div class="col-lg-6">
+          <h4>自社勤務の開始時刻&nbsp;
           <?php
           	if (count($attendanceOn) > 0) {
           		foreach ($attendanceOn as $item) {
-          			echo date('H:i',$item);
+          			echo date('H:i',$item), '&nbsp;';
           		}
           	} else {
           		echo '--:--';
@@ -84,18 +133,18 @@
           </h4>
         <?php
         	if (count($attendanceOn) > 0) {
-        		echo '<p class="text-center"><a class="btn btn-lg btn-primary" disabled="disabled" href="attendanceOn.php" role="button">出勤</a></p>', "\n";
+        		echo '<p class="text-center"><a class="btn btn-lg btn-primary" disabled="disabled" href="attendanceOn.php" role="button">自社業務開始</a></p>', "\n";
         	} else {
-        		echo '<p class="text-center"><a class="btn btn-lg btn-primary" href="attendanceOn.php" role="button">出勤</a></p>', "\n";
+        		echo '<p class="text-center"><a class="btn btn-lg btn-primary" href="attendanceOn.php" role="button">自社業務開始</a></p>', "\n";
         	}
     	?>
 		</div>
         <div class="col-lg-6">
-          <h4>本日の退勤時刻&nbsp;
+          <h4>自社勤務の終了時刻&nbsp;
           <?php
           	if (count($attendanceOff) > 0) {
           		foreach ($attendanceOff as $item) {
-          			echo date('H:i',$item);
+          			echo date('H:i',$item), '&nbsp;';
           		}
           	} else {
           		echo '--:--';
@@ -104,9 +153,9 @@
           </h4>
         <?php
         	if (count($attendanceOff) > 0) {
-        		echo '<p class="text-center"><a class="btn btn-lg btn-default" disabled="disabled" href="attendanceOff.php" role="button">退勤</a></p>', "\n";
+        		echo '<p class="text-center"><a class="btn btn-lg btn-default" disabled="disabled" href="attendanceOff.php" role="button">自社業務終了</a></p>', "\n";
         	} else {
-        		echo '<p class="text-center"><a class="btn btn-lg btn-default" href="attendanceOff.php" role="button">退勤</a></p>', "\n";
+        		echo '<p class="text-center"><a class="btn btn-lg btn-default" href="attendanceOff.php" role="button">自社業務終了</a></p>', "\n";
         	}
     	?>
         </div>
@@ -122,6 +171,6 @@
 
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="bootstrap/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="bootstrap/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
