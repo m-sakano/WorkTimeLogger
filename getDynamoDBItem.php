@@ -17,7 +17,7 @@ function getDynamoDBItem($client,$email,$unixTimeFrom) {
 		            'AttributeValueList' => array(
 		                array('N' => $unixTimeFrom)
 		            ),
-		            'ComparisonOperator' => 'GT'
+		            'ComparisonOperator' => 'GE'
 		        )
 		    )
 		));
