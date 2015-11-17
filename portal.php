@@ -163,7 +163,7 @@
 
       <footer class="footer">
       <div align="center">
-        <p><a href="https://github.com/m-sakano/WorkTimeLogger">WorkTimeLogger by m-sakano</a></p>
+        <p><a href="https://github.com/m-sakano/WorkTimeLogger">WorkTimeLogger</a></p>
       </div>
       </footer>
 
