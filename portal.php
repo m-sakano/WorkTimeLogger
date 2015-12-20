@@ -95,7 +95,6 @@ if (iterator_count($credentials) > 0) {
       </div>
 
 		<!-- Modal -->
-		<form action="downloadScripts" method="POST">
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
@@ -196,7 +195,6 @@ if (iterator_count($credentials) > 0) {
 		    </div>
 		  </div>
 		</div>
-		</form>
 		
       <div class="jumbotron">
         <h3><?php echo date('Y/m/d D');?><br><?php echo date('H:i');?></h3>

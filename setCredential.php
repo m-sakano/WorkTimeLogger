@@ -18,11 +18,12 @@ $unixTime = time();
 
 try {
 	$result = $client->putItem(array(
-	    'TableName' => DynamoDB_CREDENTIAL_TABLE,
+	    'TableName' => DynamoDB_CONFIG_TABLE,
 	    'Item' => array(
-	        'Email'      => array('S' => $email),
+	        'Email'       => array('S' => $email),
+	        'AppsName'    => array('S' => BRAND),
 	        'UnixTime'    => array('N' => $unixTime),
-	        'Credential'   => array('S' => $credential)
+	        'Credential'  => array('S' => $credential)
 	    )
 	));
 } catch (exception $e) {

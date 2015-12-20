@@ -5,11 +5,17 @@ require_once('config.php');
 function getCredential($client,$email) {
 	try {
 		$result = $client->getIterator('Query', array(
-		    'TableName' => DynamoDB_CREDENTIAL_TABLE,
+		    'TableName' => DynamoDB_CONFIG_TABLE,
 		    'KeyConditions' => array(
 		        'Email' => array(
 		            'AttributeValueList' => array(
 		                array('S' => $email)
+		            ),
+		            'ComparisonOperator' => 'EQ'
+		        ),
+		        'AppsName' => array(
+		            'AttributeValueList' => array(
+		                array('S' => BRAND)
 		            ),
 		            'ComparisonOperator' => 'EQ'
 		        )
